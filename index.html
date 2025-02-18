@@ -56,7 +56,11 @@
 <body>
 
 <audio id="bg-music" loop>
-    <source src="https://limewire.com/d/31675712-dde2-429a-b273-d736cce678df#tJoDuVNY4oUte-xtyvf2XJR9b2ZFWsrzMP06BN5BpC8.mp3" type="audio/mp3">
+    <source src="<audio id="bg-music" loop>
+    <source src="https://docs.google.com/uc?export=download&id=1fVrkZmimBiPWNR9hbt5Ssb5r75N7rtQQ" type="audio/mp3">
+</audio>
+<button onclick="toggleMusic()">🎵 Play Music</button>
+" type="audio/mp3">
 </audio>  
 <button id="play-button">🎵 Play Music</button>
 
@@ -73,20 +77,17 @@
 </div>
 
 <script>
-   document.addEventListener("DOMContentLoaded", function() {
+let musicPlaying = false;
+function toggleMusic() {
     let music = document.getElementById("bg-music");
-    let playButton = document.getElementById("play-button");
+    if (musicPlaying) {
+        music.pause();
+    } else {
+        music.play();
+    }
+    musicPlaying = !musicPlaying;
+}
 
-    playButton.addEventListener("click", function() {
-        if (music.paused) {
-            music.play();
-            playButton.innerText = "🔇 Pause Music";
-        } else {
-            music.pause();
-            playButton.innerText = "🎵 Play Music";
-        }
-    });
-});
 
 
     function startCareer() {
