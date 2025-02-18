@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Hoop Dreams - Main Menu</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;700&display=swap');
+        
+        body {
+            font-family: 'Oswald', sans-serif;
+            text-align: center;
+            background-color: #0A0A0A;
+            color: white;
+            margin: 0;
+            padding: 0;
+        }
+        #game-container {
+            width: 90%;
+            max-width: 800px;
+            margin: auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #0D1A2D, #142850);
+            border-radius: 15px;
+            box-shadow: 0px 0px 15px #0056b3;
+        }
+        .menu-btn {
+            display: block;
+            width: 80%;
+            margin: 15px auto;
+            padding: 15px;
+            font-size: 22px;
+            font-weight: bold;
+            text-transform: uppercase;
+            cursor: pointer;
+            border: none;
+            border-radius: 8px;
+            background: linear-gradient(90deg, #007BFF, #00A2FF);
+            color: white;
+            transition: all 0.3s ease-in-out;
+        }
+        .menu-btn:hover {
+            background: linear-gradient(90deg, #0056b3, #007BFF);
+            transform: scale(1.05);
+        }
+        .logo {
+            font-size: 40px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-shadow: 0px 0px 10px rgba(0, 162, 255, 0.8);
+        }
+        .small-text {
+            font-size: 16px;
+            color: #AAAAAA;
+        }
+    </style>
+</head>
+<body>
+
+<audio id="bg-music" loop autoplay>
+    <source src="1+Hour+Of+Freestyle+Rap+Beats+-+Trap+Beats+Mix+2024.mp3" type="audio/mp3">
+</audio>
+
+<div id="game-container">
+    <div class="logo">🏀 HOOP DREAMS 🏀<br>by TM3 Sports</div>
+
+    <button class="menu-btn" onclick="startCareer()">Start My Career</button>
+    <button class="menu-btn" onclick="customizePlayer()">MyPlayer Customization</button>
+    <button class="menu-btn" onclick="recruitment()">Recruitment</button>
+    <button class="menu-btn" onclick="toggleMusic()">Toggle Music 🎵</button>
+    <button class="menu-btn" onclick="settings()">Settings ⚙</button>
+
+    <p class="small-text">Version: UI Preview Build</p>
+</div>
+
+<script>
+    let musicPlaying = true;
+    function toggleMusic() {
+        let music = document.getElementById("bg-music");
+        if (musicPlaying) {
+            music.pause();
+        } else {
+            music.play();
+        }
+        musicPlaying = !musicPlaying;
+    }
+
+    function startCareer() {
+        alert("Career Mode Coming Soon!");
+    }
+
+    function customizePlayer() {
+        alert("MyPlayer Customization Under Construction!");
+    }
+
+    function recruitment() {
+        alert("Recruitment Process Will Be Expanded Soon!");
+    }
+
+    function settings() {
+        alert("Settings Menu Coming in Future Updates!");
+    }
+</script>
+
+</body>
+</html>
