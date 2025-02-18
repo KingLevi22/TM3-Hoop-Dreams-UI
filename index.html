@@ -55,14 +55,10 @@
 </head>
 <body>
 
-<audio id="bg-music" loop>
+<audio id="bg-music" autoplay loop>
     <source src="<audio id="bg-music" loop>
     <source src="https://docs.google.com/uc?export=download&id=1fVrkZmimBiPWNR9hbt5Ssb5r75N7rtQQ" type="audio/mp3">
 </audio>
-<button onclick="toggleMusic()">🎵 Play Music</button>
-" type="audio/mp3">
-</audio>  
-<button id="play-button">🎵 Play Music</button>
 
 <div id="game-container">
     <div class="logo">🏀 HOOP DREAMS 🏀<br>by TM3 Sports</div>
@@ -87,7 +83,13 @@ function toggleMusic() {
     }
     musicPlaying = !musicPlaying;
 }
-
+    
+document.addEventListener("click", function() {
+    let music = document.getElementById("bg-music");
+    if (music.paused) {
+        music.play();
+    }
+}, { once: true });
 
 
     function startCareer() {
