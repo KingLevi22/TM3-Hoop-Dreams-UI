@@ -1,113 +1,171 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Hoop Dreams - Main Menu</title>
+    <title>Hoop Dreams - MyPlayer & College Journey</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;700&display=swap');
-        
         body {
-            font-family: 'Oswald', sans-serif;
+            font-family: Arial, sans-serif;
             text-align: center;
-            background-color: #0A0A0A;
+            background-color: #111;
             color: white;
-            margin: 0;
-            padding: 0;
         }
         #game-container {
-            width: 90%;
-            max-width: 900px;
+            width: 80%;
             margin: auto;
             padding: 20px;
-            background: linear-gradient(135deg, #0D1A2D, #142850);
-            border-radius: 15px;
-            box-shadow: 0px 0px 15px #0056b3;
+            background: #222;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px #007BFF;
         }
-        .menu-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 15px;
-            padding: 20px;
-        }
-        .menu-btn {
-            width: 100%;
-            height: 150px;
-            border: none;
-            border-radius: 8px;
-            background-size: cover;
-            background-position: center;
-            font-size: 22px;
-            font-weight: bold;
-            text-transform: uppercase;
-            color: white;
-            cursor: pointer;
-            transition: all 0.3s ease-in-out;
-            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
-        }
-        .menu-btn:hover {
-            transform: scale(1.05);
-            box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.5);
-        }
-        .logo {
-            font-size: 40px;
-            font-weight: 700;
-            margin-bottom: 20px;
-            text-shadow: 0px 0px 10px rgba(0, 162, 255, 0.8);
-        }
-        .small-text {
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 10px;
             font-size: 16px;
-            color: #AAAAAA;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            background-color: #007BFF;
+            color: white;
+        }
+        .btn:hover {
+            background-color: #0056b3;
+        }
+        select, input {
+            padding: 5px;
+            font-size: 16px;
+        }
+        #player-preview, #college-selection, #coach-pitch {
+            display: none;
+            margin-top: 20px;
+        }
+        audio {
+            display: none;
         }
     </style>
 </head>
 <body>
 
-<audio id="bg-music" autoplay loop>
-    <source src="music/InstrumentalTrapBeats.mp3" type="audio/mp3">
+<!-- Background Music -->
+<audio id="bg-music" loop>
+    <source src="your_music_file.mp3" type="audio/mpeg">
 </audio>
-<button onclick="toggleMusic()">Toggle Music 🎵</button>
+<button class="btn" onclick="toggleMusic()">Toggle Music</button>
 
 <div id="game-container">
-    <div class="logo">🏀 HOOP DREAMS 🏀<br>by TM3 Sports</div>
+    <h1>Hoop Dreams by TM3 Sports</h1>
+    <h2>Create Your MyPlayer</h2>
 
-    <div class="menu-grid">
-        <button class="menu-btn" style="background-image: url('images/start-career.jpg');" onclick="startCareer()">Start My Career</button>
-        <button class="menu-btn" style="background-image: url('images/myplayer.jpg');" onclick="customizePlayer()">MyPlayer Customization</button>
-        <button class="menu-btn" style="background-image: url('images/recruitment.jpg');" onclick="recruitment()">Recruitment</button>
-        <button class="menu-btn" style="background-image: url('images/settings.jpg');" onclick="settings()">Settings ⚙</button>
+    <p>First Name: <input type="text" id="first-name"></p>
+    <p>Last Name: <input type="text" id="last-name"></p>
+    <p>Nickname: <input type="text" id="nickname"></p>
+    <p>Hometown: <input type="text" id="hometown"></p>
+    <p>Jersey Number: <input type="number" id="jersey-number" min="0" max="99"></p>
+
+    <p>Height (Feet & Inches): <input type="number" id="height-feet" min="5" max="7"> ' <input type="number" id="height-inches" min="0" max="11"> "</p>
+    <p>Weight (lbs): <input type="number" id="weight" min="150" max="300"></p>
+
+    <p>Choose Your Archetype:</p>
+    <select id="player-archetype">
+        <option value="Sharpshooter">Sharpshooter</option>
+        <option value="Slasher">Slasher</option>
+        <option value="Playmaker">Playmaker</option>
+        <option value="Lockdown Defender">Lockdown Defender</option>
+        <option value="All-Around">All-Around</option>
+    </select>
+
+    <p>Choose Your Background:</p>
+    <select id="player-background">
+        <option value="5-Star Recruit">5-Star Recruit</option>
+        <option value="Underdog">Underdog</option>
+        <option value="Late Bloomer">Late Bloomer</option>
+        <option value="Juco Transfer">Juco Transfer</option>
+        <option value="Overseas Phenom">Overseas Phenom</option>
+    </select>
+
+    <button class="btn" onclick="savePlayer()">Save Player & Continue</button>
+
+    <div id="player-preview">
+        <h2>Player Summary</h2>
+        <p><strong>Name:</strong> <span id="preview-name"></span></p>
+        <p><strong>Nickname:</strong> <span id="preview-nickname"></span></p>
+        <p><strong>Hometown:</strong> <span id="preview-hometown"></span></p>
+        <p><strong>Jersey Number:</strong> <span id="preview-jersey"></span></p>
+        <p><strong>Height:</strong> <span id="preview-height"></span></p>
+        <p><strong>Weight:</strong> <span id="preview-weight"></span></p>
+        <p><strong>Archetype:</strong> <span id="preview-archetype"></span></p>
+        <p><strong>Background:</strong> <span id="preview-background"></span></p>
+        <button class="btn" onclick="proceedToCollege()">Proceed to College Selection</button>
     </div>
 
-    <p class="small-text">Version: UI Preview Build</p>
+    <div id="college-selection">
+        <h2>Choose Your College</h2>
+        <p>Coach: "We like your playstyle, but we need to see how you fit with our team."</p>
+        <select id="college-choice">
+            <option value="Duke">Duke</option>
+            <option value="North Carolina">North Carolina</option>
+            <option value="Kansas">Kansas</option>
+            <option value="Kentucky">Kentucky</option>
+            <option value="Michigan State">Michigan State</option>
+            <option value="Villanova">Villanova</option>
+            <option value="Gonzaga">Gonzaga</option>
+        </select>
+        <button class="btn" onclick="coachPitch()">See Coach's Pitch</button>
+    </div>
+
+    <div id="coach-pitch">
+        <h2>Coach Pitch</h2>
+        <p id="pitch-text"></p>
+        <button class="btn" onclick="confirmCollege()">Commit to This School</button>
+    </div>
 </div>
 
 <script>
-    let musicPlaying = true;
     function toggleMusic() {
         let music = document.getElementById("bg-music");
-        if (musicPlaying) {
-            music.pause();
-        } else {
+        if (music.paused) {
             music.play();
+        } else {
+            music.pause();
         }
-        musicPlaying = !musicPlaying;
     }
 
-    function startCareer() {
-        alert("Career Mode Coming Soon!");
+    function savePlayer() {
+        let firstName = document.getElementById("first-name").value;
+        let lastName = document.getElementById("last-name").value;
+        let nickname = document.getElementById("nickname").value;
+        let hometown = document.getElementById("hometown").value;
+        let jersey = document.getElementById("jersey-number").value;
+        let heightFeet = document.getElementById("height-feet").value;
+        let heightInches = document.getElementById("height-inches").value;
+        let weight = document.getElementById("weight").value;
+        let archetype = document.getElementById("player-archetype").value;
+        let background = document.getElementById("player-background").value;
+
+        document.getElementById("preview-name").innerText = firstName + " " + lastName;
+        document.getElementById("preview-nickname").innerText = nickname;
+        document.getElementById("preview-hometown").innerText = hometown;
+        document.getElementById("preview-jersey").innerText = jersey;
+        document.getElementById("preview-height").innerText = heightFeet + "'" + heightInches + '"';
+        document.getElementById("preview-weight").innerText = weight + " lbs";
+        document.getElementById("preview-archetype").innerText = archetype;
+        document.getElementById("preview-background").innerText = background;
+
+        document.getElementById("player-preview").style.display = "block";
     }
 
-    function customizePlayer() {
-        alert("MyPlayer Customization Under Construction!");
+    function proceedToCollege() {
+        document.getElementById("college-selection").style.display = "block";
     }
 
-    function recruitment() {
-        alert("Recruitment Process Will Be Expanded Soon!");
+    function coachPitch() {
+        document.getElementById("coach-pitch").style.display = "block";
     }
 
-    function settings() {
-        alert("Settings Menu Coming in Future Updates!");
+    function confirmCollege() {
+        alert("You have committed to your school! The journey begins now.");
     }
 </script>
-
 
 </body>
 </html>
