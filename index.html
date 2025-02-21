@@ -193,27 +193,180 @@
         <button class="btn" onclick="proceedToCollege()">Proceed to College Selection</button>
     </div>
 
-    <div id="college-selection">
-        <h2>Choose Your College</h2>
-        <p>Coach: "We like your playstyle, but we need to see how you fit with our team."</p>
-        <select id="college-choice">
-            <option value="Duke">Duke</option>
-            <option value="North Carolina">North Carolina</option>
-            <option value="Kansas">Kansas</option>
-            <option value="Kentucky">Kentucky</option>
-            <option value="Michigan State">Michigan State</option>
-            <option value="Villanova">Villanova</option>
-            <option value="Gonzaga">Gonzaga</option>
-        </select>
-        <button class="btn" onclick="coachPitch()">See Coach's Pitch</button>
-    </div>
-
-    <div id="coach-pitch">
-        <h2>Coach Pitch</h2>
-        <p id="pitch-text"></p>
-        <button class="btn" onclick="confirmCollege()">Commit to This School</button>
-    </div>
+<div id="college-selection">
+  <h2>Choose Your College</h2>
+  <p id="coach-instructions">
+    Coach: "We like your playstyle, but we need to see how you fit with our team."
+  </p>
+  <select id="college-choice">
+    <!-- Power 5 Conferences -->
+    <optgroup label="ACC (Power 5)">
+      <option value="Duke">Duke</option>
+      <option value="North Carolina">North Carolina</option>
+      <option value="Virginia">Virginia</option>
+      <option value="Louisville">Louisville</option>
+      <option value="Syracuse">Syracuse</option>
+      <option value="Florida State">Florida State</option>
+      <option value="Miami (FL)">Miami (FL)</option>
+      <option value="Georgia Tech">Georgia Tech</option>
+      <option value="NC State">NC State</option>
+      <option value="Wake Forest">Wake Forest</option>
+    </optgroup>
+    <optgroup label="Big Ten (Power 5)">
+      <option value="Michigan State">Michigan State</option>
+      <option value="Michigan">Michigan</option>
+      <option value="Ohio State">Ohio State</option>
+      <option value="Indiana">Indiana</option>
+      <option value="Purdue">Purdue</option>
+      <option value="Wisconsin">Wisconsin</option>
+      <option value="Illinois">Illinois</option>
+      <option value="Minnesota">Minnesota</option>
+      <option value="Iowa">Iowa</option>
+      <option value="Rutgers">Rutgers</option>
+    </optgroup>
+    <optgroup label="Big 12 (Power 5)">
+      <option value="Kansas">Kansas</option>
+      <option value="Texas">Texas</option>
+      <option value="Baylor">Baylor</option>
+      <option value="Oklahoma">Oklahoma</option>
+      <option value="Oklahoma State">Oklahoma State</option>
+      <option value="Iowa State">Iowa State</option>
+      <option value="TCU">TCU</option>
+      <option value="West Virginia">West Virginia</option>
+      <option value="Kansas State">Kansas State</option>
+    </optgroup>
+    <optgroup label="Pac-12 (Power 5)">
+      <option value="Arizona">Arizona</option>
+      <option value="UCLA">UCLA</option>
+      <option value="USC">USC</option>
+      <option value="Oregon">Oregon</option>
+      <option value="Oregon State">Oregon State</option>
+      <option value="Stanford">Stanford</option>
+      <option value="Colorado">Colorado</option>
+      <option value="Utah">Utah</option>
+      <option value="Washington">Washington</option>
+      <option value="Washington State">Washington State</option>
+    </optgroup>
+    <optgroup label="SEC (Power 5)">
+      <option value="Kentucky">Kentucky</option>
+      <option value="Florida">Florida</option>
+      <option value="Tennessee">Tennessee</option>
+      <option value="LSU">LSU</option>
+      <option value="Alabama">Alabama</option>
+      <option value="Arkansas">Arkansas</option>
+      <option value="Auburn">Auburn</option>
+      <option value="Georgia">Georgia</option>
+      <option value="Mississippi State">Mississippi State</option>
+      <option value="Ole Miss">Ole Miss</option>
+      <option value="South Carolina">South Carolina</option>
+      <option value="Missouri">Missouri</option>
+    </optgroup>
+    <!-- Mid-Majors -->
+    <optgroup label="Mid-Majors">
+      <option value="Villanova">Villanova</option>
+      <option value="Gonzaga">Gonzaga</option>
+      <option value="Butler">Butler</option>
+      <option value="VCU">VCU</option>
+      <option value="Dayton">Dayton</option>
+      <option value="Xavier">Xavier</option>
+      <option value="Saint Louis">Saint Louis</option>
+      <option value="Loyola Chicago">Loyola Chicago</option>
+      <option value="Wichita State">Wichita State</option>
+      <option value="Northern Iowa">Northern Iowa</option>
+      <option value="Belmont">Belmont</option>
+      <option value="Rhode Island">Rhode Island</option>
+    </optgroup>
+    <!-- NCAA Subdivisions -->
+    <optgroup label="Division II (NCAA Subdivisions)">
+      <option value="Northwest Missouri State">Northwest Missouri State</option>
+      <option value="West Texas A&M">West Texas A&M</option>
+      <option value="Lincoln Memorial">Lincoln Memorial</option>
+      <option value="Florida Southern">Florida Southern</option>
+      <option value="Emporia State">Emporia State</option>
+    </optgroup>
+    <optgroup label="Division III (NCAA Subdivisions)">
+      <option value="Williams College">Williams College</option>
+      <option value="Amherst College">Amherst College</option>
+      <option value="Wabash College">Wabash College</option>
+      <option value="Emory University">Emory University</option>
+      <option value="Tufts University">Tufts University</option>
+      <option value="Middlebury College">Middlebury College</option>
+    </optgroup>
+  </select>
+  <button class="btn" onclick="coachPitch()">See Coach's Pitch</button>
 </div>
+
+<div id="coach-pitch" style="display: none;">
+  <h2>Coach Pitch</h2>
+  <p id="pitch-text"></p>
+  <button class="btn" onclick="confirmCollege()">Commit to This School</button>
+</div>
+
+<script>
+// Define an object mapping specific schools to an array of possible coach pitches.
+const coachPitches = {
+  "Duke": [
+    "At Duke, we demand excellence on and off the court. Your leadership could define our legacy.",
+    "Join us at Duke—where champions are forged and legends are born."
+  ],
+  "North Carolina": [
+    "UNC believes in your ability to carry our proud tradition to new heights.",
+    "With heart and hustle, you'll fit right in as a Tar Heel."
+  ],
+  "Kansas": [
+    "At Kansas, basketball is in our DNA. We see a future star in you.",
+    "Commit to Kansas and help us continue our championship legacy."
+  ],
+  "Kentucky": [
+    "Kentucky is all about passion and potential—your game is exactly what we need.",
+    "Join the Wildcats and become part of a storied tradition of excellence."
+  ],
+  "Michigan State": [
+    "At Michigan State, hard work meets legacy. Prove you have what it takes.",
+    "Our Spartans are known for grit—bring your determination to the court."
+  ],
+  "Villanova": [
+    "Villanova's precision and teamwork can elevate your game to new levels.",
+    "Join us at Villanova and be a part of our winning formula."
+  ],
+  "Gonzaga": [
+    "Gonzaga values skill and innovation. We believe you have the potential to shine.",
+    "Commit to Gonzaga, where creative play meets championship ambition."
+  ]
+  // Add additional specific pitches as needed…
+};
+
+// Default pitches for schools without a custom message
+const defaultPitches = [
+  "Our program is built on teamwork and dedication. We know you'll thrive here.",
+  "Commit to excellence and join a legacy of champions—your future starts now!"
+];
+
+function coachPitch() {
+  const collegeSelect = document.getElementById("college-choice");
+  const selectedCollege = collegeSelect.value;
+  const pitchText = document.getElementById("pitch-text");
+
+  // Get the array of pitches for the selected college or use the default pitches
+  let pitches = coachPitches[selectedCollege] || defaultPitches;
+  
+  // Choose a random pitch from the array
+  let randomIndex = Math.floor(Math.random() * pitches.length);
+  pitchText.innerText = pitches[randomIndex];
+  
+  // Hide the college selection and display the coach pitch section
+  document.getElementById("college-selection").style.display = "none";
+  document.getElementById("coach-pitch").style.display = "block";
+}
+
+function confirmCollege() {
+  const collegeSelect = document.getElementById("college-choice");
+  const selectedCollege = collegeSelect.value;
+  alert("You have committed to " + selectedCollege + "!");
+  // Additional logic to finalize the choice can be added here
+}
+</script>
+
 
 <script>
     function toggleMusic() {
