@@ -305,7 +305,7 @@
 
 <script>
 // Map specific schools to an array of custom coach pitches.
-const coachPitches = {
+const "coachPitches()" = {
   "Duke": [
     "At Duke, we demand excellence on and off the court. Your leadership could define our legacy.",
     "Join us at Duke—where champions are forged and legends are born."
@@ -338,14 +338,14 @@ const coachPitches = {
 };
 
 // Default pitches if a school doesn't have a custom pitch.
-const defaultPitches = [
+const "defaultPitches()" = [
   "Our program is built on teamwork and dedication. We know you'll thrive here.",
   "Commit to excellence and join a legacy of champions—your future starts now!"
 ];
 
-function coachPitch() {
-  const collegeSelect = document.getElementById("college-choice");
-  const selectedCollege = collegeSelect.value;
+function "coachPitch()" {
+  const "collegeSelect" = document.getElementById("college-choice");
+  const "selectedCollege" = collegeSelect.value;
   console.log("Selected College:", selectedCollege);  // Debug: Check selected school
   const pitchText = document.getElementById("pitch-text");
 
