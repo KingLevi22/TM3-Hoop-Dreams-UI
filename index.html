@@ -195,8 +195,9 @@
 
 <div id="college-selection">
   <h2>Choose Your College</h2>
-
-  <select id="college-choice">
+  <!-- This paragraph will be updated with a dynamic pitch based on the selection -->
+  <p id="pitch-preview">Coach: "We like your playstyle, but we need to see how you fit with our team."</p>
+  <select id="college-choice" onchange="updateCoachPitchPreview()">
     <!-- Power 5 Conferences -->
     <optgroup label="ACC (Power 5)">
       <option value="Duke">Duke</option>
@@ -291,18 +292,12 @@
       <option value="Middlebury College">Middlebury College</option>
     </optgroup>
   </select>
-  <button class="btn" onclick="coachPitch()">See Coach's Pitch</button>
-</div>
-
-<div id="coach-pitch" style="display: none;">
-  <h2>Coach Pitch</h2>
-  <p id="pitch-text"></p>
   <button class="btn" onclick="confirmCollege()">Commit to This School</button>
 </div>
 
 <script>
-// Map specific schools to an array of custom coach pitches.
-const "coachPitches()" = {
+// Map specific schools to arrays of custom coach pitches.
+const coachPitches = {
   "Duke": [
     "At Duke, we demand excellence on and off the court. Your leadership could define our legacy.",
     "Join us at Duke—where champions are forged and legends are born."
@@ -331,40 +326,35 @@ const "coachPitches()" = {
     "Gonzaga values skill and innovation. We believe you have the potential to shine.",
     "Commit to Gonzaga, where creative play meets championship ambition."
   ]
-  // You can add additional custom pitches for other schools here.
+  // Add additional custom pitches for other schools as desired.
 };
 
-// Default pitches if a school doesn't have a custom pitch.
-const "defaultPitches()" = [
+// Default pitches for schools that don't have a custom message.
+const defaultPitches = [
   "Our program is built on teamwork and dedication. We know you'll thrive here.",
   "Commit to excellence and join a legacy of champions—your future starts now!"
 ];
 
-function "coachPitch()" {
-  const "collegeSelect" = document.getElementById("college-choice");
-  const "selectedCollege" = collegeSelect.value;
-  console.log("Selected College:", selectedCollege);  // Debug: Check selected school
-  const pitchText = document.getElementById("pitch-text");
+// This function updates the pitch preview whenever the selected college changes.
+function updateCoachPitchPreview() {
+  const collegeSelect = document.getElementById("college-choice");
+  const selectedCollege = collegeSelect.value;
+  const preview = document.getElementById("pitch-preview");
 
-  // Get custom pitches or fall back to default pitches.
+  // Retrieve custom pitches if available, otherwise use the default pitches.
   let pitches = coachPitches[selectedCollege] || defaultPitches;
-  
-  // Choose a random pitch from the array.
   let randomIndex = Math.floor(Math.random() * pitches.length);
-  pitchText.innerText = pitches[randomIndex];
-  
-  // Hide the college selection and show the coach pitch.
-  document.getElementById("college-selection").style.display = "none";
-  document.getElementById("coach-pitch").style.display = "block";
+  preview.innerText = pitches[randomIndex];
 }
 
 function confirmCollege() {
   const collegeSelect = document.getElementById("college-choice");
   const selectedCollege = collegeSelect.value;
   alert("You have committed to " + selectedCollege + "!");
-  // Additional logic for confirming the college can be added here.
+  // Additional commit logic can be added here.
 }
 </script>
+
 
 
 <script>
