@@ -195,6 +195,7 @@
 
 <div id="college-selection">
   <h2>Choose Your College</h2>
+  <!-- Remove or repurpose the default coach instruction text if needed -->
   <p id="coach-instructions">
     Coach: "We like your playstyle, but we need to see how you fit with our team."
   </p>
@@ -303,7 +304,7 @@
 </div>
 
 <script>
-// Define an object mapping specific schools to an array of possible coach pitches.
+// Map specific schools to an array of custom coach pitches.
 const coachPitches = {
   "Duke": [
     "At Duke, we demand excellence on and off the court. Your leadership could define our legacy.",
@@ -333,10 +334,10 @@ const coachPitches = {
     "Gonzaga values skill and innovation. We believe you have the potential to shine.",
     "Commit to Gonzaga, where creative play meets championship ambition."
   ]
-  // Add additional specific pitches as needed…
+  // You can add additional custom pitches for other schools here.
 };
 
-// Default pitches for schools without a custom message
+// Default pitches if a school doesn't have a custom pitch.
 const defaultPitches = [
   "Our program is built on teamwork and dedication. We know you'll thrive here.",
   "Commit to excellence and join a legacy of champions—your future starts now!"
@@ -345,16 +346,17 @@ const defaultPitches = [
 function coachPitch() {
   const collegeSelect = document.getElementById("college-choice");
   const selectedCollege = collegeSelect.value;
+  console.log("Selected College:", selectedCollege);  // Debug: Check selected school
   const pitchText = document.getElementById("pitch-text");
 
-  // Get the array of pitches for the selected college or use the default pitches
+  // Get custom pitches or fall back to default pitches.
   let pitches = coachPitches[selectedCollege] || defaultPitches;
   
-  // Choose a random pitch from the array
+  // Choose a random pitch from the array.
   let randomIndex = Math.floor(Math.random() * pitches.length);
   pitchText.innerText = pitches[randomIndex];
   
-  // Hide the college selection and display the coach pitch section
+  // Hide the college selection and show the coach pitch.
   document.getElementById("college-selection").style.display = "none";
   document.getElementById("coach-pitch").style.display = "block";
 }
@@ -363,7 +365,7 @@ function confirmCollege() {
   const collegeSelect = document.getElementById("college-choice");
   const selectedCollege = collegeSelect.value;
   alert("You have committed to " + selectedCollege + "!");
-  // Additional logic to finalize the choice can be added here
+  // Additional logic for confirming the college can be added here.
 }
 </script>
 
