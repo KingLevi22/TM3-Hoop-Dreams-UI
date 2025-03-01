@@ -138,6 +138,8 @@ audio {
 </audio>
 <button class="btn" onclick="toggleMusic()">Toggle Music</button>
 
+<button class="btn" onclick="savePlayer()">Save Player & Continue</button>
+
 <div id="game-container">
     <h1>Hoop Dreams by TM3 Sports</h1>
     <h2>Create Your MyPlayer</h2>
@@ -263,9 +265,26 @@ audio {
     <option value="Former Baseball Player">Former Baseball Player</option>
 </select>
 
-
-    <button class="btn" onclick="savePlayer()">Save Player & Continue</button>
-
+<div class="thumbnail-container">
+        <div class="thumbnail-button" onclick="startCareer()">
+            <img src="images/start-career.jpg" alt="Start My Career">
+            <span class="thumbnail-label">Start My Career</span>
+        </div>
+        <div class="thumbnail-button" onclick="customizePlayer()">
+            <img src="images/myplayer-customization.jpg" alt="MyPlayer Customization">
+            <span class="thumbnail-label">MyPlayer Customization</span>
+        </div>
+        <div class="thumbnail-button" onclick="openSettings()">
+            <img src="images/settings.jpg" alt="Settings">
+            <span class="thumbnail-label">Settings</span>
+        </div>
+    </div>
+    
+<audio id="bg-music" autoplay loop>
+        <source src="music/InstrumentalTrapBeats.mp3" type="audio/mp3">
+    </audio>
+    <button class="btn" onclick="toggleMusic()">Mute Music</button>
+    
     <div id="player-preview">
         <h2>Player Summary</h2>
         <p><strong>Name:</strong> <span id="preview-name"></span></p>
