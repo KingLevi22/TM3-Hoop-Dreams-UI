@@ -2,512 +2,527 @@
 <html>
 <head>
     <title>Hoop Dreams - MyPlayer Journey by TM3 Sports</title>
-
     <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap" rel="stylesheet">
-    
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap" rel="stylesheet">
     <style>
         body {
-    margin: 0;
-    padding: 0;
-    font-family: Arial, sans-serif;
-    text-align: center;
-    background: url('music/pexels-david-kouakou-536418893-17574549.jpg') no-repeat center center fixed;
-    background-size: cover;
-    color: white;
-}
-
-/* NEON TITLE */
-.neon-title {
-    font-family: 'Orbitron', sans-serif; /* from Google Fonts link */
-    font-size: 3rem;
-    color: #f72585;
-    margin-top: 1rem;
-    margin-bottom: 0.5rem;
-    text-shadow:
-      0 0 5px   #f72585,
-      0 0 10px  #f72585,
-      0 0 20px  #f72585,
-      0 0 40px  #f72585;
-}
-
-.subtitle {
-    display: block; 
-    font-size: 1rem;
-    color: #fff;
-    opacity: 0.85;
-    text-shadow: none;
-    margin-top: 0.5rem;
-} /* <-- Close bracket here */
-
-/* MAIN CONTAINER */
-#game-container {
-    width: 80%;
-    margin: auto;
-    padding: 20px;
-    background: rgba(34, 34, 34, 0.8);
-    border-radius: 10px;
-    box-shadow: 0px 0px 10px #007BFF;
-}
-
-/* BUTTONS */
-.btn {
-    display: inline-block;
-    padding: 10px 20px;
-    margin: 10px;
-    font-size: 16px;
-    cursor: pointer;
-    border: none;
-    border-radius: 5px;
-    background-color: #007BFF;
-    color: white;
-}
-.btn:hover {
-    background-color: #0056b3;
-}
-select, input {
-    padding: 5px;
-    font-size: 16px;
-}
-
-/* HIDDEN SECTIONS */
-#player-preview, #college-selection, #coach-pitch {
-    display: none;
-    margin-top: 20px;
-}
-audio {
-    display: none;
-}
-
-/* ========== NEW: THUMBNAIL BUTTON STYLES ========== */
-.thumbnail-container {
-  display: flex;
-  flex-wrap: wrap;            /* Allows wrapping to next line if needed */
-  justify-content: center;    /* Center horizontally */
-  gap: 1rem;                  /* Space between thumbnails */
-  margin: 2rem 0;            /* Top/bottom spacing */
-}
-
-.thumbnail-button {
-  width: 150px;               /* Adjust as desired */
-  height: 150px;
-  position: relative;
-  border-radius: 10px;
-  cursor: pointer;
-  overflow: hidden;
-  background-color: #222;     /* Fallback if image doesn't load */
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.thumbnail-button img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;          /* Ensures image fills the box */
-  opacity: 0.8;               /* Slightly dim to make label easier to read */
-  transition: opacity 0.3s ease;
-}
-
-.thumbnail-button:hover {
-  transform: scale(1.05);
-  box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
-}
-
-.thumbnail-button:hover img {
-  opacity: 1;
-}
-
-.thumbnail-label {
-  position: absolute;
-  bottom: 10px;
-  left: 50%;
-  transform: translateX(-50%);
-  color: #fff;
-  font-weight: bold;
-  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
-  pointer-events: none; /* So clicks go through to .thumbnail-button */
-}
-
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background: url('music/pexels-david-kouakou-536418893-17574549.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: white;
+        }
+        /* NEON TITLE */
+        .neon-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 3rem;
+            color: #f72585;
+            margin-top: 1rem;
+            margin-bottom: 0.5rem;
+            text-shadow:
+                0 0 5px #f72585,
+                0 0 10px #f72585,
+                0 0 20px #f72585,
+                0 0 40px #f72585;
+        }
+        .subtitle {
+            display: block;
+            font-size: 1rem;
+            color: #fff;
+            opacity: 0.85;
+            text-shadow: none;
+            margin-top: 0.5rem;
+        }
+        /* MAIN CONTAINER */
+        #game-container {
+            width: 80%;
+            margin: auto;
+            padding: 20px;
+            background: rgba(34, 34, 34, 0.8);
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px #007BFF;
+        }
+        /* BUTTONS */
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            background-color: #007BFF;
+            color: white;
+        }
+        .btn:hover {
+            background-color: #0056b3;
+        }
+        select, input {
+            padding: 5px;
+            font-size: 16px;
+        }
+        /* HIDDEN SECTIONS */
+        #player-preview, #college-selection, #coach-pitch, #settings-modal {
+            display: none;
+            margin-top: 20px;
+        }
+        audio {
+            display: none;
+        }
+        /* THUMBNAIL BUTTON STYLES */
+        .thumbnail-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+        .thumbnail-button {
+            width: 150px;
+            height: 150px;
+            position: relative;
+            border-radius: 10px;
+            cursor: pointer;
+            overflow: hidden;
+            background-color: #222;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .thumbnail-button img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.8;
+            transition: opacity 0.3s ease;
+        }
+        .thumbnail-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+        }
+        .thumbnail-button:hover img {
+            opacity: 1;
+        }
+        .thumbnail-label {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #fff;
+            font-weight: bold;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+            pointer-events: none;
+        }
+        /* MODAL FOR SETTINGS */
+        #settings-modal {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(34, 34, 34, 0.9);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px #007BFF;
+            z-index: 1000;
+        }
+        #close-settings {
+            margin-top: 10px;
+        }
     </style>
 </head>
 <body>
-
-<!-- Background Music -->
-<audio id="bg-music" autoplay loop>
-    <source src="music/InstrumentalTrapBeats.mp3" type="audio/mp3">
-</audio>
-<button class="btn" onclick="toggleMusic()">Toggle Music</button>
-
-<button class="btn" onclick="savePlayer()">Save Player & Continue</button>
-
-<div id="game-container">
-    <h1>Hoop Dreams by TM3 Sports</h1>
-    <h2>Create Your MyPlayer</h2>
-
-    <p>First Name: <input type="text" id="first-name"></p>
-    <p>Last Name: <input type="text" id="last-name"></p>
-    <p>Nickname: <input type="text" id="nickname"></p>
-    <p>Hometown: <input type="text" id="hometown"></p>
-    <p>Jersey Number: <input type="number" id="jersey-number" min="0" max="99"></p>
-
-    <p>Height (Feet & Inches): <input type="number" id="height-feet" min="5" max="7"> ' <input type="number" id="height-inches" min="0" max="11"> "</p>
-    <p>Weight (lbs): <input type="number" id="weight" min="150" max="300"></p>
-
-    <p>Choose Your Archetype:</p>
-    <select id="player-archetype">
-       <option value="Sharpshooter">Sharpshooter</option>
-<option value="Slasher">Slasher</option>
-<option value="Playmaker">Playmaker</option>
-<option value="Lockdown Defender">Lockdown Defender</option>
-<option value="All-Around">All-Around</option>
-
-<!-- Point Guard (PG) Archetypes -->
-<option value="Pass-First Point">Pass-First Point</option>
-<option value="Scoring Machine">Scoring Machine</option>
-<option value="Shot Creator">Shot Creator</option>
-<option value="Two-Way Playmaker">Two-Way Playmaker</option>
-<option value="Perimeter Lockdown">Perimeter Lockdown</option>
-<option value="Deep Range Sniper">Deep Range Sniper</option>
-<option value="Floor General">Floor General</option>
-<option value="3PT Playmaker">3PT Playmaker</option>
-<option value="Slashing Playmaker">Slashing Playmaker</option>
-<option value="Offensive Maestro">Offensive Maestro</option>
-
-<!-- Shooting Guard (SG) Archetypes -->
-<option value="Two-Way Scorer">Two-Way Scorer</option>
-<option value="3&D Shooting Guard">3&D Shooting Guard</option>
-<option value="High-Flying Dunker">High-Flying Dunker</option>
-<option value="Sharpshooting Facilitator">Sharpshooting Facilitator</option>
-<option value="Mid-Range Specialist">Mid-Range Specialist</option>
-<option value="Slashing Sharpshooter">Slashing Sharpshooter</option>
-<option value="Iso Scorer">Iso Scorer</option>
-<option value="Defensive Stopper">Defensive Stopper</option>
-<option value="Fast Break Finisher">Fast Break Finisher</option>
-<option value="Microwave Scorer">Microwave Scorer</option>
-
-<!-- Small Forward (SF) Archetypes -->
-<option value="3-Level Scorer">3-Level Scorer</option>
-<option value="Two-Way Slasher">Two-Way Slasher</option>
-<option value="Point Forward">Point Forward</option>
-<option value="Perimeter Threat">Perimeter Threat</option>
-<option value="All-Around Wing">All-Around Wing</option>
-<option value="Versatile Defender">Versatile Defender</option>
-<option value="Rebounding Wing">Rebounding Wing</option>
-<option value="Athletic Finisher">Athletic Finisher</option>
-<option value="Iso Playmaker">Iso Playmaker</option>
-<option value="Lockdown Slasher">Lockdown Slasher</option>
-
-<!-- Power Forward (PF) Archetypes -->
-<option value="Stretch Four">Stretch Four</option>
-<option value="Defensive Anchor">Defensive Anchor</option>
-<option value="Rebounding Glass Cleaner">Rebounding Glass Cleaner</option>
-<option value="Post Scorer">Post Scorer</option>
-<option value="Paint Beast">Paint Beast</option>
-<option value="Face-Up Four">Face-Up Four</option>
-<option value="Inside-Out Scorer">Inside-Out Scorer</option>
-<option value="Pick & Pop Specialist">Pick & Pop Specialist</option>
-<option value="Slashing Four">Slashing Four</option>
-<option value="Two-Way Finisher">Two-Way Finisher</option>
-
-<!-- Center (C) Archetypes -->
-<option value="Traditional Big">Traditional Big</option>
-<option value="Interior Scorer">Interior Scorer</option>
-<option value="Paint Protector">Paint Protector</option>
-<option value="Glass-Cleaning Lock">Glass-Cleaning Lock</option>
-<option value="Stretch Big">Stretch Big</option>
-<option value="Back-to-Basket Center">Back-to-Basket Center</option>
-<option value="Athletic Rim Protector">Athletic Rim Protector</option>
-<option value="Post Playmaker">Post Playmaker</option>
-<option value="Rebounding Specialist">Rebounding Specialist</option>
-<option value="Mobile Big">Mobile Big</option>
-
-    </select>
-
-<p>Choose Your Background:</p>
-<select id="player-background">
-    <!-- Elite Recruits -->
-    <option value="5-Star Recruit">5-Star Recruit</option>
-    <option value="McDonald's All-American">McDonald's All-American</option>
-    <option value="Top International Prospect">Top International Prospect</option>
-    <option value="Elite Prep Academy Star">Elite Prep Academy Star</option>
-    <option value="Overseas Phenom">Overseas Phenom</option>
-
-    <!-- High Potential Players -->
-    <option value="4-Star Recruit">4-Star Recruit</option>
-    <option value="AAU Standout">AAU Standout</option>
-    <option value="One-and-Done Prospect">One-and-Done Prospect</option>
-    <option value="Coach's Son">Coach's Son</option>
-    <option value="Legacy Player">Legacy Player</option>
-
-    <!-- Mid-Level Prospects -->
-    <option value="3-Star Recruit">3-Star Recruit</option>
-    <option value="Underdog">Underdog</option>
-    <option value="High School Late Bloomer">High School Late Bloomer</option>
-    <option value="Juco Transfer">Juco Transfer</option>
-    <option value="D2/D3 Transfer">D2/D3 Transfer</option>
-
-    <!-- Players Who Had to Overcome Obstacles -->
-    <option value="Walk-On Success Story">Walk-On Success Story</option>
-    <option value="Grit & Grind Player">Grit & Grind Player</option>
-    <option value="Former Football Star">Former Football Star</option>
-    <option value="Overlooked Prospect">Overlooked Prospect</option>
-    <option value="No Offers Out of High School">No Offers Out of High School</option>
-
-    <!-- Special Stories & Unique Backgrounds -->
-    <option value="Streetball Legend">Streetball Legend</option>
-    <option value="Late-Growth Spurt">Late-Growth Spurt</option>
-    <option value="International Hidden Gem">International Hidden Gem</option>
-    <option value="Two-Sport Athlete">Two-Sport Athlete</option>
-    <option value="Redshirt Freshman">Redshirt Freshman</option>
-    <option value="Military Background">Military Background</option>
-    <option value="Undrafted Hopeful">Undrafted Hopeful</option>
-    <option value="G-League Development">G-League Development</option>
-    <option value="Former Baseball Player">Former Baseball Player</option>
-</select>
-
-<div class="thumbnail-container">
-        <div class="thumbnail-button" onclick="startCareer()">
-            <img src="images/start-career.jpg" alt="Start My Career">
-            <span class="thumbnail-label">Start My Career</span>
-        </div>
-        <div class="thumbnail-button" onclick="customizePlayer()">
-            <img src="images/myplayer-customization.jpg" alt="MyPlayer Customization">
-            <span class="thumbnail-label">MyPlayer Customization</span>
-        </div>
-        <div class="thumbnail-button" onclick="openSettings()">
-            <img src="images/settings.jpg" alt="Settings">
-            <span class="thumbnail-label">Settings</span>
-        </div>
-    </div>
-    
-<audio id="bg-music" autoplay loop>
+    <!-- Background Music -->
+    <audio id="bg-music" autoplay loop>
         <source src="music/InstrumentalTrapBeats.mp3" type="audio/mp3">
     </audio>
-    <button class="btn" onclick="toggleMusic()">Mute Music</button>
-    
-    <div id="player-preview">
-        <h2>Player Summary</h2>
-        <p><strong>Name:</strong> <span id="preview-name"></span></p>
-        <p><strong>Nickname:</strong> <span id="preview-nickname"></span></p>
-        <p><strong>Hometown:</strong> <span id="preview-hometown"></span></p>
-        <p><strong>Jersey Number:</strong> <span id="preview-jersey"></span></p>
-        <p><strong>Height:</strong> <span id="preview-height"></span></p>
-        <p><strong>Weight:</strong> <span id="preview-weight"></span></p>
-        <p><strong>Archetype:</strong> <span id="preview-archetype"></span></p>
-        <p><strong>Background:</strong> <span id="preview-background"></span></p>
-        <button class="btn" onclick="proceedToCollege()">Proceed to College Selection</button>
+    <button class="btn" onclick="toggleMusic()">Toggle Music</button>
+    <button class="btn" onclick="savePlayer()">Save Player & Continue</button>
+
+    <div id="game-container">
+        <h1 class="neon-title">Hoop Dreams</h1>
+        <span class="subtitle">MyPlayer Journey by TM3 Sports</span>
+        <h2>Create Your MyPlayer</h2>
+        <p>First Name: <input type="text" id="first-name"></p>
+        <p>Last Name: <input type="text" id="last-name"></p>
+        <p>Nickname: <input type="text" id="nickname"></p>
+        <p>Hometown: <input type="text" id="hometown"></p>
+        <p>Jersey Number: <input type="number" id="jersey-number" min="0" max="99"></p>
+        <p>Height (Feet & Inches): <input type="number" id="height-feet" min="5" max="7"> ' <input type="number" id="height-inches" min="0" max="11"> "</p>
+        <p>Weight (lbs): <input type="number" id="weight" min="150" max="300"></p>
+        <p>Choose Your Archetype:</p>
+        <select id="player-archetype">
+            <option value="Sharpshooter">Sharpshooter</option>
+            <option value="Slasher">Slasher</option>
+            <option value="Playmaker">Playmaker</option>
+            <option value="Lockdown Defender">Lockdown Defender</option>
+            <option value="All-Around">All-Around</option>
+            <!-- Point Guard (PG) Archetypes -->
+            <option value="Pass-First Point">Pass-First Point</option>
+            <option value="Scoring Machine">Scoring Machine</option>
+            <option value="Shot Creator">Shot Creator</option>
+            <option value="Two-Way Playmaker">Two-Way Playmaker</option>
+            <option value="Perimeter Lockdown">Perimeter Lockdown</option>
+            <option value="Deep Range Sniper">Deep Range Sniper</option>
+            <option value="Floor General">Floor General</option>
+            <option value="3PT Playmaker">3PT Playmaker</option>
+            <option value="Slashing Playmaker">Slashing Playmaker</option>
+            <option value="Offensive Maestro">Offensive Maestro</option>
+            <!-- Shooting Guard (SG) Archetypes -->
+            <option value="Two-Way Scorer">Two-Way Scorer</option>
+            <option value="3&D Shooting Guard">3&D Shooting Guard</option>
+            <option value="High-Flying Dunker">High-Flying Dunker</option>
+            <option value="Sharpshooting Facilitator">Sharpshooting Facilitator</option>
+            <option value="Mid-Range Specialist">Mid-Range Specialist</option>
+            <option value="Slashing Sharpshooter">Slashing Sharpshooter</option>
+            <option value="Iso Scorer">Iso Scorer</option>
+            <option value="Defensive Stopper">Defensive Stopper</option>
+            <option value="Fast Break Finisher">Fast Break Finisher</option>
+            <option value="Microwave Scorer">Microwave Scorer</option>
+            <!-- Small Forward (SF) Archetypes -->
+            <option value="3-Level Scorer">3-Level Scorer</option>
+            <option value="Two-Way Slasher">Two-Way Slasher</option>
+            <option value="Point Forward">Point Forward</option>
+            <option value="Perimeter Threat">Perimeter Threat</option>
+            <option value="All-Around Wing">All-Around Wing</option>
+            <option value="Versatile Defender">Versatile Defender</option>
+            <option value="Rebounding Wing">Rebounding Wing</option>
+            <option value="Athletic Finisher">Athletic Finisher</option>
+            <option value="Iso Playmaker">Iso Playmaker</option>
+            <option value="Lockdown Slasher">Lockdown Slasher</option>
+            <!-- Power Forward (PF) Archetypes -->
+            <option value="Stretch Four">Stretch Four</option>
+            <option value="Defensive Anchor">Defensive Anchor</option>
+            <option value="Rebounding Glass Cleaner">Rebounding Glass Cleaner</option>
+            <option value="Post Scorer">Post Scorer</option>
+            <option value="Paint Beast">Paint Beast</option>
+            <option value="Face-Up Four">Face-Up Four</option>
+            <option value="Inside-Out Scorer">Inside-Out Scorer</option>
+            <option value="Pick & Pop Specialist">Pick & Pop Specialist</option>
+            <option value="Slashing Four">Slashing Four</option>
+            <option value="Two-Way Finisher">Two-Way Finisher</option>
+            <!-- Center (C) Archetypes -->
+            <option value="Traditional Big">Traditional Big</option>
+            <option value="Interior Scorer">Interior Scorer</option>
+            <option value="Paint Protector">Paint Protector</option>
+            <option value="Glass-Cleaning Lock">Glass-Cleaning Lock</option>
+            <option value="Stretch Big">Stretch Big</option>
+            <option value="Back-to-Basket Center">Back-to-Basket Center</option>
+            <option value="Athletic Rim Protector">Athletic Rim Protector</option>
+            <option value="Post Playmaker">Post Playmaker</option>
+            <option value="Rebounding Specialist">Rebounding Specialist</option>
+            <option value="Mobile Big">Mobile Big</option>
+        </select>
+        <p>Choose Your Background:</p>
+        <select id="player-background">
+            <!-- Elite Recruits -->
+            <option value="5-Star Recruit">5-Star Recruit</option>
+            <option value="McDonald's All-American">McDonald's All-American</option>
+            <option value="Top International Prospect">Top International Prospect</option>
+            <option value="Elite Prep Academy Star">Elite Prep Academy Star</option>
+            <option value="Overseas Phenom">Overseas Phenom</option>
+            <!-- High Potential Players -->
+            <option value="4-Star Recruit">4-Star Recruit</option>
+            <option value="AAU Standout">AAU Standout</option>
+            <option value="One-and-Done Prospect">One-and-Done Prospect</option>
+            <option value="Coach's Son">Coach's Son</option>
+            <option value="Legacy Player">Legacy Player</option>
+            <!-- Mid-Level Prospects -->
+            <option value="3-Star Recruit">3-Star Recruit</option>
+            <option value="Underdog">Underdog</option>
+            <option value="High School Late Bloomer">High School Late Bloomer</option>
+            <option value="Juco Transfer">Juco Transfer</option>
+            <option value="D2/D3 Transfer">D2/D3 Transfer</option>
+            <!-- Players Who Had to Overcome Obstacles -->
+            <option value="Walk-On Success Story">Walk-On Success Story</option>
+            <option value="Grit & Grind Player">Grit & Grind Player</option>
+            <option value="Former Football Star">Former Football Star</option>
+            <option value="Overlooked Prospect">Overlooked Prospect</option>
+            <option value="No Offers Out of High School">No Offers Out of High School</option>
+            <!-- Special Stories & Unique Backgrounds -->
+            <option value="Streetball Legend">Streetball Legend</option>
+            <option value="Late-Growth Spurt">Late-Growth Spurt</option>
+            <option value="International Hidden Gem">International Hidden Gem</option>
+            <option value="Two-Sport Athlete">Two-Sport Athlete</option>
+            <option value="Redshirt Freshman">Redshirt Freshman</option>
+            <option value="Military Background">Military Background</option>
+            <option value="Undrafted Hopeful">Undrafted Hopeful</option>
+            <option value="G-League Development">G-League Development</option>
+            <option value="Former Baseball Player">Former Baseball Player</option>
+        </select>
+        <div class="thumbnail-container">
+            <div class="thumbnail-button" onclick="startCareer()">
+                <img src="images/start-career.jpg" alt="Start My Career">
+                <span class="thumbnail-label">Start My Career</span>
+            </div>
+            <div class="thumbnail-button" onclick="customizePlayer()">
+                <img src="images/myplayer-customization.jpg" alt="MyPlayer Customization">
+                <span class="thumbnail-label">MyPlayer Customization</span>
+            </div>
+            <div class="thumbnail-button" onclick="openSettings()">
+                <img src="images/settings.jpg" alt="Settings">
+                <span class="thumbnail-label">Settings</span>
+            </div>
+        </div>
+
+        <div id="player-preview">
+            <h2>Player Summary</h2>
+            <p><strong>Name:</strong> <span id="preview-name"></span></p>
+            <p><strong>Nickname:</strong> <span id="preview-nickname"></span></p>
+            <p><strong>Hometown:</strong> <span id="preview-hometown"></span></p>
+            <p><strong>Jersey Number:</strong> <span id="preview-jersey"></span></p>
+            <p><strong>Height:</strong> <span id="preview-height"></span></p>
+            <p><strong>Weight:</strong> <span id="preview-weight"></span></p>
+            <p><strong>Archetype:</strong> <span id="preview-archetype"></span></p>
+            <p><strong>Background:</strong> <span id="preview-background"></span></p>
+            <button class="btn" onclick="proceedToCollege()">Proceed to College Selection</button>
+        </div>
+
+        <div id="college-selection">
+            <h2>Choose Your College</h2>
+            <p id="pitch-preview">Coach: "We like your playstyle, but we need to see how you fit with our team."</p>
+            <select id="college-choice" onchange="updateCoachPitchPreview()">
+                <!-- Power 5 Conferences -->
+                <optgroup label="ACC (Power 5)">
+                    <option value="Duke">Duke</option>
+                    <option value="North Carolina">North Carolina</option>
+                    <option value="Virginia">Virginia</option>
+                    <option value="Louisville">Louisville</option>
+                    <option value="Syracuse">Syracuse</option>
+                    <option value="Florida State">Florida State</option>
+                    <option value="Miami (FL)">Miami (FL)</option>
+                    <option value="Georgia Tech">Georgia Tech</option>
+                    <option value="NC State">NC State</option>
+                    <option value="Wake Forest">Wake Forest</option>
+                </optgroup>
+                <optgroup label="Big Ten (Power 5)">
+                    <option value="Michigan State">Michigan State</option>
+                    <option value="Michigan">Michigan</option>
+                    <option value="Ohio State">Ohio State</option>
+                    <option value="Indiana">Indiana</option>
+                    <option value="Purdue">Purdue</option>
+                    <option value="Wisconsin">Wisconsin</option>
+                    <option value="Illinois">Illinois</option>
+                    <option value="Minnesota">Minnesota</option>
+                    <option value="Iowa">Iowa</option>
+                    <option value="Rutgers">Rutgers</option>
+                </optgroup>
+                <optgroup label="Big 12 (Power 5)">
+                    <option value="Kansas">Kansas</option>
+                    <option value="Texas">Texas</option>
+                    <option value="Baylor">Baylor</option>
+                    <option value="Oklahoma">Oklahoma</option>
+                    <option value="Oklahoma State">Oklahoma State</option>
+                    <option value="Iowa State">Iowa State</option>
+                    <option value="TCU">TCU</option>
+                    <option value="West Virginia">West Virginia</option>
+                    <option value="Kansas State">Kansas State</option>
+                </optgroup>
+                <optgroup label="Pac-12 (Power 5)">
+                    <option value="Arizona">Arizona</option>
+                    <option value="UCLA">UCLA</option>
+                    <option value="USC">USC</option>
+                    <option value="Oregon">Oregon</option>
+                    <option value="Oregon State">Oregon State</option>
+                    <option value="Stanford">Stanford</option>
+                    <option value="Colorado">Colorado</option>
+                    <option value="Utah">Utah</option>
+                    <option value="Washington">Washington</option>
+                    <option value="Washington State">Washington State</option>
+                </optgroup>
+                <optgroup label="SEC (Power 5)">
+                    <option value="Kentucky">Kentucky</option>
+                    <option value="Florida">Florida</option>
+                    <option value="Tennessee">Tennessee</option>
+                    <option value="LSU">LSU</option>
+                    <option value="Alabama">Alabama</option>
+                    <option value="Arkansas">Arkansas</option>
+                    <option value="Auburn">Auburn</option>
+                    <option value="Georgia">Georgia</option>
+                    <option value="Mississippi State">Mississippi State</option>
+                    <option value="Ole Miss">Ole Miss</option>
+                    <option value="South Carolina">South Carolina</option>
+                    <option value="Missouri">Missouri</option>
+                </optgroup>
+                <!-- Mid-Majors -->
+                <optgroup label="Mid-Majors">
+                    <option value="Villanova">Villanova</option>
+                    <option value="Gonzaga">Gonzaga</option>
+                    <option value="Butler">Butler</option>
+                    <option value="VCU">VCU</option>
+                    <option value="Dayton">Dayton</option>
+                    <option value="Xavier">Xavier</option>
+                    <option value="Saint Louis">Saint Louis</option>
+                    <option value="Loyola Chicago">Loyola Chicago</option>
+                    <option value="Wichita State">Wichita State</option>
+                    <option value="Northern Iowa">Northern Iowa</option>
+                    <option value="Belmont">Belmont</option>
+                    <option value="Rhode Island">Rhode Island</option>
+                </optgroup>
+                <!-- NCAA Subdivisions -->
+                <optgroup label="Division II (NCAA Subdivisions)">
+                    <option value="Northwest Missouri State">Northwest Missouri State</option>
+                    <option value="West Texas A&M">West Texas A&M</option>
+                    <option value="Lincoln Memorial">Lincoln Memorial</option>
+                    <option value="Florida Southern">Florida Southern</option>
+                    <option value="Emporia State">Emporia State</option>
+                </optgroup>
+                <optgroup label="Division III (NCAA Subdivisions)">
+                    <option value="Williams College">Williams College</option>
+                    <option value="Amherst College">Amherst College</option>
+                    <option value="Wabash College">Wabash College</option>
+                    <option value="Emory University">Emory University</option>
+                    <option value="Tufts University">Tufts University</option>
+                    <option value="Middlebury College">Middlebury College</option>
+                </optgroup>
+            </select>
+            <button class="btn" onclick="confirmCollege()">Commit to This School</button>
+        </div>
+
+        <!-- Settings Modal -->
+        <div id="settings-modal">
+            <h2>Settings</h2>
+            <p>Music Volume: <input type="range" id="music-volume" min="0" max="1" step="0.1" value="1" onchange="adjustVolume(this.value)"></p>
+            <!-- Add more settings here, e.g., theme toggle, difficulty level -->
+            <button class="btn" id="close-settings" onclick="closeSettings()">Close</button>
+        </div>
     </div>
 
-<div id="college-selection">
-  <h2>Choose Your College</h2>
-  <!-- This paragraph will be updated with a dynamic pitch based on the selection -->
-  <p id="pitch-preview">Coach: "We like your playstyle, but we need to see how you fit with our team."</p>
-  <select id="college-choice" onchange="updateCoachPitchPreview()">
-    <!-- Power 5 Conferences -->
-    <optgroup label="ACC (Power 5)">
-      <option value="Duke">Duke</option>
-      <option value="North Carolina">North Carolina</option>
-      <option value="Virginia">Virginia</option>
-      <option value="Louisville">Louisville</option>
-      <option value="Syracuse">Syracuse</option>
-      <option value="Florida State">Florida State</option>
-      <option value="Miami (FL)">Miami (FL)</option>
-      <option value="Georgia Tech">Georgia Tech</option>
-      <option value="NC State">NC State</option>
-      <option value="Wake Forest">Wake Forest</option>
-    </optgroup>
-    <optgroup label="Big Ten (Power 5)">
-      <option value="Michigan State">Michigan State</option>
-      <option value="Michigan">Michigan</option>
-      <option value="Ohio State">Ohio State</option>
-      <option value="Indiana">Indiana</option>
-      <option value="Purdue">Purdue</option>
-      <option value="Wisconsin">Wisconsin</option>
-      <option value="Illinois">Illinois</option>
-      <option value="Minnesota">Minnesota</option>
-      <option value="Iowa">Iowa</option>
-      <option value="Rutgers">Rutgers</option>
-    </optgroup>
-    <optgroup label="Big 12 (Power 5)">
-      <option value="Kansas">Kansas</option>
-      <option value="Texas">Texas</option>
-      <option value="Baylor">Baylor</option>
-      <option value="Oklahoma">Oklahoma</option>
-      <option value="Oklahoma State">Oklahoma State</option>
-      <option value="Iowa State">Iowa State</option>
-      <option value="TCU">TCU</option>
-      <option value="West Virginia">West Virginia</option>
-      <option value="Kansas State">Kansas State</option>
-    </optgroup>
-    <optgroup label="Pac-12 (Power 5)">
-      <option value="Arizona">Arizona</option>
-      <option value="UCLA">UCLA</option>
-      <option value="USC">USC</option>
-      <option value="Oregon">Oregon</option>
-      <option value="Oregon State">Oregon State</option>
-      <option value="Stanford">Stanford</option>
-      <option value="Colorado">Colorado</option>
-      <option value="Utah">Utah</option>
-      <option value="Washington">Washington</option>
-      <option value="Washington State">Washington State</option>
-    </optgroup>
-    <optgroup label="SEC (Power 5)">
-      <option value="Kentucky">Kentucky</option>
-      <option value="Florida">Florida</option>
-      <option value="Tennessee">Tennessee</option>
-      <option value="LSU">LSU</option>
-      <option value="Alabama">Alabama</option>
-      <option value="Arkansas">Arkansas</option>
-      <option value="Auburn">Auburn</option>
-      <option value="Georgia">Georgia</option>
-      <option value="Mississippi State">Mississippi State</option>
-      <option value="Ole Miss">Ole Miss</option>
-      <option value="South Carolina">South Carolina</option>
-      <option value="Missouri">Missouri</option>
-    </optgroup>
-    <!-- Mid-Majors -->
-    <optgroup label="Mid-Majors">
-      <option value="Villanova">Villanova</option>
-      <option value="Gonzaga">Gonzaga</option>
-      <option value="Butler">Butler</option>
-      <option value="VCU">VCU</option>
-      <option value="Dayton">Dayton</option>
-      <option value="Xavier">Xavier</option>
-      <option value="Saint Louis">Saint Louis</option>
-      <option value="Loyola Chicago">Loyola Chicago</option>
-      <option value="Wichita State">Wichita State</option>
-      <option value="Northern Iowa">Northern Iowa</option>
-      <option value="Belmont">Belmont</option>
-      <option value="Rhode Island">Rhode Island</option>
-    </optgroup>
-    <!-- NCAA Subdivisions -->
-    <optgroup label="Division II (NCAA Subdivisions)">
-      <option value="Northwest Missouri State">Northwest Missouri State</option>
-      <option value="West Texas A&M">West Texas A&M</option>
-      <option value="Lincoln Memorial">Lincoln Memorial</option>
-      <option value="Florida Southern">Florida Southern</option>
-      <option value="Emporia State">Emporia State</option>
-    </optgroup>
-    <optgroup label="Division III (NCAA Subdivisions)">
-      <option value="Williams College">Williams College</option>
-      <option value="Amherst College">Amherst College</option>
-      <option value="Wabash College">Wabash College</option>
-      <option value="Emory University">Emory University</option>
-      <option value="Tufts University">Tufts University</option>
-      <option value="Middlebury College">Middlebury College</option>
-    </optgroup>
-  </select>
-  <button class="btn" onclick="confirmCollege()">Commit to This School</button>
-</div>
+    <script>
+        // Map specific schools to arrays of custom coach pitches.
+        const coachPitches = {
+            "Duke": [
+                "At Duke, we demand excellence on and off the court. Your leadership could define our legacy.",
+                "Join us at Duke—where champions are forged and legends are born."
+            ],
+            "North Carolina": [
+                "UNC believes in your ability to carry our proud tradition to new heights.",
+                "With heart and hustle, you'll fit right in as a Tar Heel."
+            ],
+            "Kansas": [
+                "At Kansas, basketball is in our DNA. We see a future star in you.",
+                "Commit to Kansas and help us continue our championship legacy."
+            ],
+            "Kentucky": [
+                "Kentucky is all about passion and potential—your game is exactly what we need.",
+                "Join the Wildcats and become part of a storied tradition of excellence."
+            ],
+            "Michigan State": [
+                "At Michigan State, hard work meets legacy. Prove you have what it takes.",
+                "Our Spartans are known for grit—bring your determination to the court."
+            ],
+            "Villanova": [
+                "Villanova's precision and teamwork can elevate your game to new levels.",
+                "Join us at Villanova and be a part of our winning formula."
+            ],
+            "Gonzaga": [
+                "Gonzaga values skill and innovation. We believe you have the potential to shine.",
+                "Commit to Gonzaga, where creative play meets championship ambition."
+            ]
+            // Expand this object with more schools as needed for custom pitches.
+        };
+        // Default pitches for schools without custom messages.
+        const defaultPitches = [
+            "Our program is built on teamwork and dedication. We know you'll thrive here.",
+            "Commit to excellence and join a legacy of champions—your future starts now!"
+        ];
 
-<script>
-// Map specific schools to arrays of custom coach pitches.
-const coachPitches = {
-  "Duke": [
-    "At Duke, we demand excellence on and off the court. Your leadership could define our legacy.",
-    "Join us at Duke—where champions are forged and legends are born."
-  ],
-  "North Carolina": [
-    "UNC believes in your ability to carry our proud tradition to new heights.",
-    "With heart and hustle, you'll fit right in as a Tar Heel."
-  ],
-  "Kansas": [
-    "At Kansas, basketball is in our DNA. We see a future star in you.",
-    "Commit to Kansas and help us continue our championship legacy."
-  ],
-  "Kentucky": [
-    "Kentucky is all about passion and potential—your game is exactly what we need.",
-    "Join the Wildcats and become part of a storied tradition of excellence."
-  ],
-  "Michigan State": [
-    "At Michigan State, hard work meets legacy. Prove you have what it takes.",
-    "Our Spartans are known for grit—bring your determination to the court."
-  ],
-  "Villanova": [
-    "Villanova's precision and teamwork can elevate your game to new levels.",
-    "Join us at Villanova and be a part of our winning formula."
-  ],
-  "Gonzaga": [
-    "Gonzaga values skill and innovation. We believe you have the potential to shine.",
-    "Commit to Gonzaga, where creative play meets championship ambition."
-  ]
-  // Add additional custom pitches for other schools as desired.
-};
-
-// Default pitches for schools that don't have a custom message.
-const defaultPitches = [
-  "Our program is built on teamwork and dedication. We know you'll thrive here.",
-  "Commit to excellence and join a legacy of champions—your future starts now!"
-];
-
-// This function updates the pitch preview whenever the selected college changes.
-function updateCoachPitchPreview() {
-  const collegeSelect = document.getElementById("college-choice");
-  const selectedCollege = collegeSelect.value;
-  const preview = document.getElementById("pitch-preview");
-
-  // Retrieve custom pitches if available, otherwise use the default pitches.
-  let pitches = coachPitches[selectedCollege] || defaultPitches;
-  let randomIndex = Math.floor(Math.random() * pitches.length);
-  preview.innerText = pitches[randomIndex];
-}
-
-function confirmCollege() {
-  const collegeSelect = document.getElementById("college-choice");
-  const selectedCollege = collegeSelect.value;
-  alert("You have committed to " + selectedCollege + "!");
-  // Additional commit logic can be added here.
-}
-</script>
-
-
-
-<script>
-    function toggleMusic() {
-        let music = document.getElementById("bg-music");
-        if (music.paused) {
-            music.play();
-        } else {
-            music.pause();
+        // Update pitch preview on college change.
+        function updateCoachPitchPreview() {
+            const collegeSelect = document.getElementById("college-choice");
+            const selectedCollege = collegeSelect.value;
+            const preview = document.getElementById("pitch-preview");
+            let pitches = coachPitches[selectedCollege] || defaultPitches;
+            let randomIndex = Math.floor(Math.random() * pitches.length);
+            preview.innerText = pitches[randomIndex];
         }
-    }
 
-    function savePlayer() {
-        let firstName = document.getElementById("first-name").value;
-        let lastName = document.getElementById("last-name").value;
-        let nickname = document.getElementById("nickname").value;
-        let hometown = document.getElementById("hometown").value;
-        let jersey = document.getElementById("jersey-number").value;
-        let heightFeet = document.getElementById("height-feet").value;
-        let heightInches = document.getElementById("height-inches").value;
-        let weight = document.getElementById("weight").value;
-        let archetype = document.getElementById("player-archetype").value;
-        let background = document.getElementById("player-background").value;
+        function toggleMusic() {
+            let music = document.getElementById("bg-music");
+            if (music.paused) {
+                music.play();
+            } else {
+                music.pause();
+            }
+        }
 
-        document.getElementById("preview-name").innerText = firstName + " " + lastName;
-        document.getElementById("preview-nickname").innerText = nickname;
-        document.getElementById("preview-hometown").innerText = hometown;
-        document.getElementById("preview-jersey").innerText = jersey;
-        document.getElementById("preview-height").innerText = heightFeet + "'" + heightInches + '"';
-        document.getElementById("preview-weight").innerText = weight + " lbs";
-        document.getElementById("preview-archetype").innerText = archetype;
-        document.getElementById("preview-background").innerText = background;
+        function adjustVolume(volume) {
+            let music = document.getElementById("bg-music");
+            music.volume = volume;
+        }
 
-        document.getElementById("player-preview").style.display = "block";
-    }
+        function savePlayer() {
+            let firstName = document.getElementById("first-name").value.trim();
+            let lastName = document.getElementById("last-name").value.trim();
+            let nickname = document.getElementById("nickname").value.trim();
+            let hometown = document.getElementById("hometown").value.trim();
+            let jersey = document.getElementById("jersey-number").value;
+            let heightFeet = document.getElementById("height-feet").value;
+            let heightInches = document.getElementById("height-inches").value;
+            let weight = document.getElementById("weight").value;
+            let archetype = document.getElementById("player-archetype").value;
+            let background = document.getElementById("player-background").value;
 
-    function proceedToCollege() {
-        document.getElementById("college-selection").style.display = "block";
-    }
+            // Basic validation
+            if (!firstName || !lastName || !jersey || !heightFeet || !heightInches || !weight) {
+                alert("Please fill in all required fields (name, jersey, height, weight).");
+                return;
+            }
 
-    function coachPitch() {
-        document.getElementById("coach-pitch").style.display = "block";
-    }
+            document.getElementById("preview-name").innerText = firstName + " " + lastName;
+            document.getElementById("preview-nickname").innerText = nickname || "N/A";
+            document.getElementById("preview-hometown").innerText = hometown || "N/A";
+            document.getElementById("preview-jersey").innerText = jersey;
+            document.getElementById("preview-height").innerText = heightFeet + "'" + heightInches + '"';
+            document.getElementById("preview-weight").innerText = weight + " lbs";
+            document.getElementById("preview-archetype").innerText = archetype;
+            document.getElementById("preview-background").innerText = background;
 
-    function confirmCollege() {
-        alert("You have committed to your school! The journey begins now.");
-    }
-</script>
+            // Save to localStorage for persistence (expand for full gameplay)
+            localStorage.setItem('playerData', JSON.stringify({
+                name: firstName + " " + lastName,
+                archetype,
+                background
+                // Add stats here later, e.g., { points: 0, assists: 0 }
+            }));
 
+            document.getElementById("player-preview").style.display = "block";
+        }
+
+        function proceedToCollege() {
+            document.getElementById("college-selection").style.display = "block";
+            // Suggestion: Hide previous sections or scroll to this.
+        }
+
+        function confirmCollege() {
+            const collegeSelect = document.getElementById("college-choice");
+            const selectedCollege = collegeSelect.value;
+            alert("You have committed to " + selectedCollege + "! The journey begins now.");
+            // Next steps: Add a new section for college career simulation.
+            // E.g., generate random games: document.getElementById('career-section').style.display = 'block';
+            // Use Math.random() for outcomes based on archetype (e.g., sharpshooter has higher 3PT chance).
+            // Track progress with localStorage, like seasons played, stats.
+        }
+
+        // Implemented thumbnail functions
+        function startCareer() {
+            savePlayer(); // Auto-save and show preview to start
+            // Suggestion: Jump to a new "career mode" section with events like practices, games.
+        }
+
+        function customizePlayer() {
+            // Scroll back to creation form or show advanced customization (e.g., add face scan placeholder).
+            window.scrollTo(0, 0);
+            alert("Customize your player further! (Add more options like tattoos, hair here.)");
+        }
+
+        function openSettings() {
+            document.getElementById("settings-modal").style.display = "block";
+        }
+
+        function closeSettings() {
+            document.getElementById("settings-modal").style.display = "none";
+        }
+    </script>
 </body>
 </html>
